@@ -7,7 +7,7 @@
  *
  */
 
-#include "ofxVectorMath.h"
+//#include "ofxVectorMath.h"
 #include "ofxBox2d.h"
 
 
@@ -15,6 +15,7 @@ class CustomCircle : public ofxBox2dCircle {
 public: 
 	void draw();
 	void setRandomColor();
+	
 
 private:
 	ofColor fillColor;

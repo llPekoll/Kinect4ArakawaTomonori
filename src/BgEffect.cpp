@@ -51,21 +51,21 @@ void BgEffect::update() {
 void BgEffect::draw() {
 	ofSetColor(255, 255, 255, 175);
 	if (direction == 0) {
-		ofLine(endPos.x, endPos.y, endPos.x-10, endPos.y);
+		ofDrawLine(endPos.x, endPos.y, endPos.x-10, endPos.y);
 	} else {
-		ofLine(endPos.x, endPos.y, endPos.x, endPos.y-10);		
+		ofDrawLine(endPos.x, endPos.y, endPos.x, endPos.y-10);		
 	}
 	ofSetColor(255, 255, 255, 135);
 	if (direction == 0) {
-		ofLine(startPos.x+100, startPos.y, endPos.x, endPos.y);
+		ofDrawLine(startPos.x+100, startPos.y, endPos.x, endPos.y);
 	} else {
-		ofLine(startPos.x, startPos.y+100, endPos.x, endPos.y);
+		ofDrawLine(startPos.x, startPos.y+100, endPos.x, endPos.y);
 	}
 	ofSetColor(255, 255, 255, 85);
 	if (direction == 0) {
-		ofLine(startPos.x, startPos.y, startPos.x+100, startPos.y);
+		ofDrawLine(startPos.x, startPos.y, startPos.x+100, startPos.y);
 	} else {
-		ofLine(startPos.x, startPos.y, startPos.x, startPos.y+100);
+		ofDrawLine(startPos.x, startPos.y, startPos.x, startPos.y+100);
 	}
 	
 }

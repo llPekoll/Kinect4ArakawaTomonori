@@ -17,17 +17,22 @@ void CustomCircle::setRandomColor() {
 }
 
 void CustomCircle::draw() {
-	if (dead) return;
+	if(body == NULL) {
+		return;
+	}
 	
-	float radius = getRadius();
+	float radius = getRadius(); 
 	glPushMatrix();
 	glTranslatef(getPosition().x, getPosition().y, 0);
 	ofFill();
-	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 150);
+	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 50);
 	ofCircle(0, 0, radius);
 	ofNoFill();
 	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 255);
 	ofCircle(0, 0, radius);
+	ofFill();
+	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 150);
+	ofCircle(0, 0, radius/3);
 	glPopMatrix();
 }
 
@@ -40,37 +45,24 @@ void CustomRect::setRandomColor() {
 }
 
 void CustomRect::draw() {
-	if(dead) return;
-	
-	//wow this is a pain
-	b2Shape* s = body->GetShapeList();
-	const b2XForm& xf = body->GetXForm();
-	b2PolygonShape* poly = (b2PolygonShape*)s;
-	int count = poly->GetVertexCount();
-	const b2Vec2* localVertices = poly->GetVertices();
-	b2Assert(count <= b2_maxPolygonVertices);
-	b2Vec2 verts[b2_maxPolygonVertices];
-	for(int32 i=0; i<count; ++i) {
-		verts[i] = b2Mul(xf, localVertices[i]);
+	if(body == NULL) {
+		return;
 	}
-	
-	
-	ofEnableAlphaBlending();
-	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 180);
+
+	float width = getWidth();
+	float height = getHeight();
+	glPushMatrix();
+	glTranslatef(getPosition().x,getPosition().y,0);
+	ofRotate(getRotation());
 	ofFill();
-	ofBeginShape();
-	for (int32 i = 0; i <count; i++) {
-		ofVertex(verts[i].x*OFX_BOX2D_SCALE, verts[i].y*OFX_BOX2D_SCALE);
-	}
-	ofEndShape();
-	
-	ofSetColor(fillColor.r, fillColor.g, fillColor.b);
+	ofSetColor(fillColor.r,fillColor.g,fillColor.b,50);
+	ofDrawRectangle(0,0,width,height);
 	ofNoFill();
-	ofBeginShape();
-	for (int32 i = 0; i <count; i++) {
-		ofVertex(verts[i].x*OFX_BOX2D_SCALE, verts[i].y*OFX_BOX2D_SCALE);
-	}
-	ofEndShape(true);	
-	ofDisableAlphaBlending();
+	ofSetColor(fillColor.r,fillColor.g,fillColor.b,255);
+	ofDrawRectangle(0,0,width,height);
+	ofFill();
+	ofSetColor(fillColor.r, fillColor.g, fillColor.b, 150);
+	ofDrawRectangle((width/2)-((width/3)/2), (height/2)-((height/3)/2),width/3,height/3);
+	 glPopMatrix();
 	
 }
