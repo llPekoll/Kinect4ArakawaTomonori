@@ -1,11 +1,26 @@
+Kinect4ArakawaTomonori
+======================
+
 Fork from git://github.com/hagino3000/Kinect4ArakawaTomonori.git 
 I love that plug in so I've try to update it into the latest version of openFrqmeworks
 I am not a really good coder so,
 My version is not as good as the original one
 
 I try to install ofxUI and ofxGUI but it does have some diplay bug for some reason
+test on OSX
 
-Add some posprocessing
+Addons
+	ofxBox2d
+	ofxKinect
+	ofxOpenCv
+	ofxXmlSettings
+
+To compile
+	open terminal
+
+	cd $ofxRoot/apps/Kinect4ArakawaTomonori
+	make
+	make RunRelease
 
 
 Many thanks to the autor
